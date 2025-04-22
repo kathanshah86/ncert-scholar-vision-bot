@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from "react";
 import { ChatInput } from "@/components/chat/ChatInput";
 import { ChatMessage } from "@/components/chat/ChatMessage";
@@ -8,6 +7,7 @@ import { ArrowLeft, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 import { extractTextFromImage } from "@/lib/ocr-simulator";
 import { searchNCERTDataset } from "@/lib/ncert-dataset";
+import { useToast } from "@/hooks/use-toast";
 
 type Message = {
   id: string;
@@ -37,11 +37,10 @@ const ChatPage = () => {
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
   const [processingImage, setProcessingImage] = useState(false);
   const [extractedText, setExtractedText] = useState<string | null>(null);
-  
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const suggestions = getChatSuggestions();
+  const { toast } = useToast();
   
-  // Scroll to bottom whenever messages change
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
@@ -62,10 +61,6 @@ const ChatPage = () => {
     setLoading(true);
     
     try {
-      // Simulate API delay
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      
-      // Search for answer in NCERT dataset
       const answer = searchNCERTDataset(message);
       addMessage(answer, true);
     } catch (error) {
@@ -82,16 +77,32 @@ const ChatPage = () => {
     setProcessingImage(true);
     
     try {
-      // Extract text from image using OCR
-      const text = await extractTextFromImage(file);
-      setExtractedText(text);
+      const extractedText = await extractTextFromImage(file);
+      setExtractedText(extractedText);
       
-      // Send extracted text to chat
-      addMessage(`I've uploaded an image for analysis.`, false);
-      addMessage(`I've analyzed your image and extracted the following text:\n\n${text}\n\nWhat would you like to know about this content?`, true);
+      addMessage("I've uploaded an image for analysis.", false);
+      
+      const relevantAnswers = searchNCERTDataset(extractedText);
+      
+      addMessage(
+        `I've analyzed your image and here's what I found:\n\n` +
+        `📝 Extracted Text:\n${extractedText}\n\n` +
+        `🤖 My Analysis:\n${relevantAnswers}`,
+        true
+      );
+      
+      toast({
+        title: "Image processed successfully",
+        description: "I've analyzed the text and provided relevant information.",
+      });
     } catch (error) {
-      addMessage("I encountered an error processing your image. Please try again with a different image.", true);
       console.error("Error processing image:", error);
+      addMessage("I encountered an error processing your image. Please try again with a different image.", true);
+      toast({
+        variant: "destructive",
+        title: "Error processing image",
+        description: "Please try again with a clearer image.",
+      });
     } finally {
       setProcessingImage(false);
     }
