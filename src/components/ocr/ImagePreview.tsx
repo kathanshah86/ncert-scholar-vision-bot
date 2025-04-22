@@ -2,6 +2,7 @@
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
 
 type ImagePreviewProps = {
   imageUrl: string;
@@ -20,8 +21,9 @@ export function ImagePreview({ imageUrl, onClear, processingText }: ImagePreview
         />
         
         {processingText && (
-          <div className="absolute inset-0 flex items-center justify-center bg-background/80 text-sm font-medium">
-            {processingText}
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-background/80 p-4">
+            <p className="text-sm font-medium">{processingText}</p>
+            <Progress className="w-1/2" value={100} />
           </div>
         )}
         
