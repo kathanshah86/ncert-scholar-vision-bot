@@ -1,4 +1,3 @@
-
 // Simulated NCERT dataset for the chatbot
 export type NCERTTopic = {
   subject: string;
@@ -94,6 +93,83 @@ export const ncertDataset: NCERTTopic[] = [
       {
         question: "What are groups and periods in the periodic table?",
         answer: "Groups (columns) in the periodic table contain elements with similar chemical properties as they have the same number of electrons in their outer shell. Periods (rows) show the number of electron shells the elements have."
+      }
+    ]
+  },
+  {
+    subject: "Social Science",
+    chapter: "The Rise of Nationalism in Europe",
+    topic: "Introduction to Nationalism",
+    content: `Nationalism is a political, social, and economic ideology that emphasizes the interests of a particular nation. Key aspects include:
+    - French Revolution's impact on nationalism
+    - Napoleon's reforms including the Napoleonic Code (1804)
+    - Unification of Italy (1871) led by Giuseppe Mazzini, Count Cavour, and Giuseppe Garibaldi
+    - German unification under Otto von Bismarck through his "Blood and Iron" policy
+    - The Congress of Vienna (1815) and its impact on European boundaries
+    - Use of symbols and allegories like Germania to represent nations`,
+    questions: [
+      {
+        question: "What were the main causes of the rise of nationalism in Europe?",
+        answer: "The causes include the French Revolution, liberal ideas of freedom and equality, economic changes like the Industrial Revolution, and common cultural elements like language and history."
+      },
+      {
+        question: "Who was the architect of German unification?",
+        answer: "Otto von Bismarck."
+      },
+      {
+        question: "What is meant by the term 'allegory'?",
+        answer: "Allegory is a symbolic representation. For example, 'Germania' was used to personify the German nation."
+      }
+    ]
+  },
+  {
+    subject: "Mathematics",
+    chapter: "Real Numbers",
+    topic: "Real Numbers and Their Properties",
+    content: `Real numbers include both rational and irrational numbers. Key concepts include:
+    - Euclid's Division Lemma: a = bq + r, where 0 ≤ r < b
+    - Fundamental Theorem of Arithmetic: Every composite number has a unique prime factorization
+    - Rational numbers can be expressed as p/q where q ≠ 0
+    - Irrational numbers cannot be expressed as p/q
+    - Decimal expansions can be terminating or non-terminating recurring`,
+    questions: [
+      {
+        question: "Use Euclid's division lemma to find the HCF of 56 and 72.",
+        answer: "Using the division algorithm: 72 = 56×1 + 16, 56 = 16×3 + 8, 16 = 8×2 + 0. So, HCF = 8."
+      },
+      {
+        question: "Is √5 a rational number? Justify your answer.",
+        answer: "No, √5 is an irrational number as it cannot be expressed as a ratio of two integers."
+      },
+      {
+        question: "Find the LCM and HCF of 6 and 20 using the prime factorization method.",
+        answer: "6 = 2×3, 20 = 2×2×5. HCF = 2, LCM = 2×2×3×5 = 60."
+      }
+    ]
+  },
+  {
+    subject: "Science",
+    chapter: "Chemical Reactions and Equations",
+    topic: "Chemical Reactions and Their Types",
+    content: `Chemical reactions involve conversion of substances into new ones with different properties. Key concepts include:
+    - Types of reactions: combination, decomposition, displacement, double displacement, and redox
+    - Balanced chemical equations follow the Law of Conservation of Mass
+    - Oxidation involves gain of oxygen or loss of hydrogen
+    - Reduction involves loss of oxygen or gain of hydrogen
+    - Real-life effects: corrosion (rusting) and rancidity
+    - Prevention methods include painting, galvanization, and using antioxidants`,
+    questions: [
+      {
+        question: "What is a balanced chemical equation? Give an example.",
+        answer: "A balanced equation has equal number of atoms of each element on both sides. Example: H₂ + Cl₂ → 2HCl"
+      },
+      {
+        question: "Define a displacement reaction with an example.",
+        answer: "A reaction in which a more reactive element displaces a less reactive element from its compound. Example: Zn + CuSO₄ → ZnSO₄ + Cu"
+      },
+      {
+        question: "What is rancidity? How can it be prevented?",
+        answer: "Rancidity is the oxidation of fats/oils resulting in foul smell and taste. It can be prevented by refrigeration, antioxidants, and airtight containers."
       }
     ]
   }
