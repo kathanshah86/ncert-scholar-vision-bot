@@ -17,23 +17,23 @@ export function ImagePreview({ imageUrl, onClear, processingText }: ImagePreview
         <img
           src={imageUrl}
           alt="Uploaded image"
-          className="h-full w-full object-cover transition-all"
+          className="h-full w-full object-cover transition-opacity"
         />
         
         {processingText && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-background/80 p-4">
-            <p className="text-sm font-medium">{processingText}</p>
-            <Progress className="w-1/2" value={100} />
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-background/80 p-4 backdrop-blur-sm">
+            <p className="text-sm font-medium animate-pulse">{processingText}</p>
+            <Progress className="w-3/4 h-1.5" value={undefined} />
           </div>
         )}
         
         <Button
           size="icon"
           variant="destructive"
-          className="absolute right-2 top-2 h-6 w-6 opacity-90"
+          className="absolute right-2 top-2 h-7 w-7 opacity-90 shadow-md"
           onClick={onClear}
         >
-          <X className="h-3 w-3" />
+          <X className="h-4 w-4" />
           <span className="sr-only">Remove image</span>
         </Button>
       </div>
